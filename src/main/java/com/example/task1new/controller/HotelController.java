@@ -20,12 +20,13 @@ public class HotelController {
     }
 
     @GetMapping("/{id}")
-    public Hotel hotelOnePageable(@PathVariable Integer id) {
+    public Object hotelOnePageable(@PathVariable Integer id) {
         if (!hotelRepository.findById(id).isPresent()) {
-            return null;
+            return "The hotel with current Id does not exist!";
         }
         Optional<Hotel> byId = hotelRepository.findById(id);
-        return  byId.get();
+        Hotel hotel = byId.get();
+        return hotel;
     }
 
 
@@ -37,7 +38,7 @@ public class HotelController {
             }
         }
         hotelRepository.save(newHotel);
-        return "success";
+        return "Hotel successfully added!";
     }
 
     @PutMapping("/edit/{hotelId}")
@@ -45,7 +46,7 @@ public class HotelController {
         Optional<Hotel> byId = hotelRepository.findById(hotelId);
         if (byId.isPresent()) {
             if (hotelRepository.existsByName(newHotel.getName())){
-                return "Already exist";
+                return "The Hotel already exist in hotel list!";
             }
             Hotel hotel = byId.get();
             hotel.setName(newHotel.getName());

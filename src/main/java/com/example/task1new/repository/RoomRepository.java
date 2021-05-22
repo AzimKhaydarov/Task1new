@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RoomRepository extends JpaRepository<Room, Integer> {
-    boolean existsByHotel_IdAndFloorAndNumberAndSize(Integer hotel_id, Integer floor, Integer roomNumber, Integer roomSize);
+    boolean existsByHotel_IdAndNumber(Integer hotel_id, Integer roomNumber);
     Page<Room> findAllByHotel_Id(Integer hotel_id, Pageable pageable);
 
 

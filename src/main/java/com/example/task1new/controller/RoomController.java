@@ -53,7 +53,7 @@ public class RoomController {
         Room room = new Room();
         Optional<Hotel> optionalHotel = hotelRepository.findById(roomDto.getHotelId());
         if (!optionalHotel.isPresent()) return "hotel not found";
-        if (roomRepository.existsByHotel_IdAndFloorAndNumberAndSize(roomDto.getHotelId(), roomDto.getFloor(), roomDto.getNumber(), roomDto.getSize()))
+        if (roomRepository.existsByHotel_IdAndNumber(roomDto.getHotelId(), roomDto.getNumber()))
             return "Current room already exists in this hotel!";
         room.setNumber(roomDto.getNumber());
         room.setFloor(roomDto.getFloor());
@@ -73,7 +73,7 @@ public class RoomController {
         room1.setFloor(roomDto.getFloor());
         room1.setSize(roomDto.getSize());
         room1.setHotel(hotelRepository.getOne(roomDto.getHotelId()));
-        if (roomRepository.existsByHotel_IdAndFloorAndNumberAndSize(roomDto.getHotelId(), roomDto.getFloor(), roomDto.getNumber(), roomDto.getSize()))
+        if (roomRepository.existsByHotel_IdAndNumber(roomDto.getHotelId(), roomDto.getNumber()))
             return "Current room already exists in this hotel!";
         roomRepository.save(room1);
         return "The room edited successfully";

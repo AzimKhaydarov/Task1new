@@ -1,0 +1,34 @@
+### ADDING HOTEL
+POST http://localhost:6363/Hotel/add
+Content-Type: application/json
+
+{
+  "name": "Royal"
+
+}
+
+### GETTING HOTEL LIST
+GET http://localhost:6363/Hotel
+
+### GETTING HOTEL BY ID
+GET http://localhost:6363/Hotel/4
+
+### EDITING THE HOTEL
+PUT http://localhost:6363/Hotel/edit/4
+Content-Type: application/json
+
+{
+  "name": "Tashkent"
+
+}
+
+### ADDING ROOM TO SELECTED HOTEL
+POST http://localhost:6363/Room/add
+Content-Type: application/json
+
+{
+"number": 4,
+"floor": 1,
+"size": 50,
+"hotelId": 6
+}
